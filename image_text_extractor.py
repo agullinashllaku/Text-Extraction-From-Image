@@ -15,9 +15,9 @@ from PIL import Image
 import pytesseract
 
 # exploring the directory for all jpg files
-for file in os.listdir("/home/deepshikha/Workspace/Text-Extraction-From-Image/set10"):
+for file in os.listdir("C:/Users/agullinas/Desktop/opencv-python"):
     if file.endswith(".jpg"):
-        file_path = "/home/deepshikha/Workspace/Text-Extraction-From-Image/set10/" + str(file)
+        file_path = "C:/Users/agullinas/Desktop/opencv-python" + str(file)
         # reading file with cv2
         img = cv2.imread(file_path)
         ratio = img.shape[0]/500.0
@@ -54,14 +54,14 @@ for file in os.listdir("/home/deepshikha/Workspace/Text-Extraction-From-Image/se
         gray = cv2.cvtColor(dst, cv2.COLOR_BGR2GRAY)
         gray = cv2.medianBlur(gray, 3)
         gray = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
-        scanned_file_name = "/home/deepshikha/Workspace/Text-Extraction-From-Image/set10/" + str(file[:-4]) + "-Scanned.png" 
+        scanned_file_name = "C:/Users/agullinas/Desktop/opencv-python" + str(file[:-4]) + "-Scanned.png" 
         cv2.imwrite(scanned_file_name, dst)
         # cv2.imshow("gray.png", dst)
         # cv2.waitKey()
 
         # fetching text from the image and storing it into a text file
         file_text = pytesseract.image_to_string(Image.open(scanned_file_name))
-        text_file_name = "/home/deepshikha/Workspace/Text-Extraction-From-Image/set10/" + str(file[:-4]) + "-Scanned.txt" 
+        text_file_name = "C:/Users/agullinas/Desktop/opencv-python" + str(file[:-4]) + "-Scanned.txt" 
         with open(text_file_name, "a") as f:
             f.write(file_text + "\n")
         # import pdb; pdb.set_trace()
